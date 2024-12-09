@@ -4,6 +4,16 @@ MAX_LINES = 5
 MIN_BET = 1
 MAX_BET = 100
 
+ROWS = 3
+COLS = 3
+
+symbolCount = {
+    "A": 2,
+    "B": 4,
+    "C": 6,
+    "D": 8
+}
+
 def deposit():
     while True:
         amount = input("How much would you like to deposit? $")
