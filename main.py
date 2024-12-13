@@ -39,7 +39,7 @@ def printSlotMachine(columns):
             if i != len(columns) - 1:
                 print(column[row], end=" | ")
             else:
-                print(column[row])
+                print(column[row], end="")
 
 
 def deposit():
@@ -103,3 +103,6 @@ def main():
 
 
 main()
+
+
+
