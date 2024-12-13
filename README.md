@@ -85,3 +85,17 @@ You can adjust the following constants to modify the game:
    *Output*: "Your total bet is $15. Current balance: $35."
 
 4. **View Results**:  
+
+
+
+---
+
+## Future Enhancements
+- Add winnings calculation based on matching patterns.
+- Implement a balance update after each spin.
+- Add more symbols and custom winning rules.
+- Allow players to continue playing until their balance reaches zero.
+
+---
+
+Have fun playing the Slot Machine Game responsibly! 🎰
