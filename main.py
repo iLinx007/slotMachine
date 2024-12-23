@@ -40,6 +40,7 @@ def printSlotMachine(columns):
                 print(column[row], end=" | ")
             else:
                 print(column[row], end="\n")
+    print()
 
 
 def deposit():
@@ -58,7 +59,7 @@ def deposit():
 
 def getNumOfLines():
     while True:
-        lines = input("Enter the number of lines you want to bet on (1 - " + str(MAX_LINES) + ")? ")
+        lines = input("Enter the number of lines you want to bet on (1 - " + str(MAX_LINES) + ")?")
         if lines.isdigit():
             lines = int(lines)
             if 1 <= lines <= MAX_LINES:
