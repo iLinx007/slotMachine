@@ -82,13 +82,13 @@ def deposit():
 
 def getNumOfLines():
     while True:
-        lines = input("Enter the number of lines you want to bet on (1 - " + str(MAX_LINES) + ")? ")
+        lines = input("Enter the number of lines you want to bet on (1 - " + str(min(MAX_LINES, ROWS)) + ")? ")
         if lines.isdigit():
             lines = int(lines)
-            if 1 <= lines <= MAX_LINES:
+            if 1 <= lines <= min(MAX_LINES, ROWS):
                 break
             else:
-                print("Enter a valid number of lines")
+                print(f"Enter a valid number of lines (1 - {min(MAX_LINES, ROWS)}).")
         else:
             print("Please enter a number.")
     
@@ -107,17 +107,6 @@ def getBet():
             print("Please enter a number.")
     
     return amount
-
-def main():
-    balance = deposit()
-    while True:
-        print(f"Current balance is ${balance}")
-        spin = input("Press enter to play (q to quit).")
-        if spin == 'q':
-            break
-        balance += game(balance)
-
-    print(f"You left with ${balance}.")
     
 def game(balance):
     lines = getNumOfLines()
@@ -135,11 +124,21 @@ def game(balance):
     slots = getSlotMachineSpin(ROWS, COLS, symbolCount)
     printSlotMachine(slots)
     winnings, winningLines = checkWinninigs(slots, lines, bet, symbolValues)
-    print(winningLines, winningLines)
     print(f"You won ${winnings}.")
     print(f"You won on lines", *winningLines)
 
     return winnings - totalBet
+
+def main():
+    balance = deposit()
+    while True:
+        print(f"Current balance is ${balance}")
+        response = input("Press enter to play (q to quit).")
+        if response == 'q':
+            break
+        balance += game(balance)
+
+    print(f"You left with ${balance}.")
 
 main()
 
