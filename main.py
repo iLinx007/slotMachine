@@ -14,6 +14,25 @@ symbolCount = {
     "D": 8
 }
 
+symbolCount = {
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2
+}
+def checkWinninigs(columns, lines, bet, values):
+    for line in range(lines):
+        symbol = columns[0][line]
+        for column in columns:
+            symb_to_check = column[line]
+            if symbol != symb_to_check:
+                break
+        else:         
+            winnings += values[symbol]*bet
+    
+    return winnings
+
+
 def getSlotMachineSpin(rows, cols, symbols):
     allSymbols = []
     for symbol, symbolCount in symbols.items():
