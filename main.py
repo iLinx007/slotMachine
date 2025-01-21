@@ -14,13 +14,16 @@ symbolCount = {
     "D": 8
 }
 
-symbolCount = {
+symbolValues = {
     "A": 5,
     "B": 4,
     "C": 3,
     "D": 2
 }
 def checkWinninigs(columns, lines, bet, values):
+    winnings = 0
+    winnningLines = []
+
     for line in range(lines):
         symbol = columns[0][line]
         for column in columns:
@@ -29,8 +32,9 @@ def checkWinninigs(columns, lines, bet, values):
                 break
         else:         
             winnings += values[symbol]*bet
+            winnningLines.append(line+1)
     
-    return winnings
+    return winnings, winnningLines
 
 
 def getSlotMachineSpin(rows, cols, symbols):
@@ -78,7 +82,7 @@ def deposit():
 
 def getNumOfLines():
     while True:
-        lines = input("Enter the number of lines you want to bet on (1 - " + str(MAX_LINES) + ")?")
+        lines = input("Enter the number of lines you want to bet on (1 - " + str(MAX_LINES) + ")? ")
         if lines.isdigit():
             lines = int(lines)
             if 1 <= lines <= MAX_LINES:
@@ -106,6 +110,14 @@ def getBet():
 
 def main():
     balance = deposit()
+    while True:
+        print(f"Current balance is ${balance}")
+        spin = input("Press enter to spin (q to quit).")
+        if spin == 'q':
+            break
+        balance += spin()
+    
+def game():
     lines = getNumOfLines()
     while True:
         bet = getBet()
@@ -120,7 +132,12 @@ def main():
 
     slots = getSlotMachineSpin(ROWS, COLS, symbolCount)
     printSlotMachine(slots)
+    winnings, winningLines = checkWinninigs(slots, lines, bet, symbolValues)
+    print(winningLines, winningLines)
+    print(f"You won ${winnings}.")
+    print(f"You won on lines", *winningLines)
 
+    return winningLines - totalBet
 
 main()
 
